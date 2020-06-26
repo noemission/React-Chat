@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import MessageList from "./MessageList/MessageList";
-import TextInput from "./TextInput/TextInput";
+import MessageList from "./components/MessageList/MessageList";
+import TextInput from "./components/TextInput/TextInput";
 import { connect } from "react-redux";
-import { wsConnect } from "./store/actions";
 import { Dispatch } from "redux";
+import { wsConnect } from "./store/actions/websocketActions";
+
 
 
 export default connect()(function App({ dispatch }: { dispatch: Dispatch }) {

@@ -1,8 +1,9 @@
 import io from 'socket.io-client'
 import { Store, Action, Dispatch } from 'redux'
-import { wsConnected, wsDisconnected, wsReconnecting, GenericAction, updateMessageList, updateOnlineCount } from './actions';
-import { WS_CONNECT, WS_DISCONNECT, SEND_MESSAGE } from './constants';
-import { Message } from './models';
+import { wsConnected, wsDisconnected, wsReconnecting } from '../actions/websocketActions';
+import { WS_CONNECT, WS_DISCONNECT, SEND_MESSAGE } from '../constants';
+import { Message } from '../models';
+import { GenericAction, updateMessageList, updateOnlineCount } from '../actions/chatActions';
 
 const socketMiddleware = () => {
     let socket: SocketIOClient.Socket = null;
@@ -72,4 +73,4 @@ const socketMiddleware = () => {
     };
 };
 
-export default [socketMiddleware()];
+export default socketMiddleware();

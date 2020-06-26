@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { sendMessage, wsConnect, wsDisconnect } from "../store/actions";
+import { sendMessage, wsConnect, wsDisconnect } from "../../store/actions";
 
 const mapDispatchToProps = { sendMessage, wsConnect, wsDisconnect }
 type Props = typeof mapDispatchToProps

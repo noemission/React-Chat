@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { ChatState } from "../store/reducer";
+import { ChatState } from "../../store/reducers/chatReducer";
+
 
 const mapStateToProps = ({ chat }: { chat: ChatState }) => ({ messageList: chat.messageList });
 type Props = ReturnType<typeof mapStateToProps>

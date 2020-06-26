@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducer from './store/reducer';
-import middlewares from './store/middlewares';
-
-console.log(reducer)
+import reducer from './reducers';
+import middlewares from './middlewares';
 
 const store = createStore(
     reducer,
     compose(
-        applyMiddleware(...middlewares),
+        applyMiddleware(middlewares[0]),
         // @ts-ignore
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
