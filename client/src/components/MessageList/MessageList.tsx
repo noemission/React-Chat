@@ -1,20 +1,18 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { ChatState } from "../../store/reducers/chatReducer";
+import Message from "../Message/Message";
+import { StateObject, MessageList } from "../../store/models";
 
-
-const mapStateToProps = ({ chat }: { chat: ChatState }) => ({ messageList: chat.messageList });
-type Props = ReturnType<typeof mapStateToProps>
-
-class MessageList extends React.Component<Props> {
-
-    render() {
-        return (
-            <div>
-                {this.props.messageList.map(message => <p key={message.id}> {message.text} </p>)}
-            </div>
-        );
-    }
+type Props = {
+    messages: MessageList
 }
+export default (props: Props) => {
+    const { messages } = props;
 
-export default connect(mapStateToProps)(MessageList)
+    return (
+        <div>
+            {messages.map(message => <Message key={message.id} text={message.text} />)}
+        </div>
+    );
+}

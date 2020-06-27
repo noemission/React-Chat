@@ -1,40 +1,26 @@
-import React from "react";
-import { connect } from 'react-redux'
-import { sendMessage, wsConnect, wsDisconnect } from "../../store/actions";
+import React, { useState } from "react";
 
-const mapDispatchToProps = { sendMessage, wsConnect, wsDisconnect }
-type Props = typeof mapDispatchToProps
-type State = {
-    inputValue: string;
-};
-
-class TextInput extends React.Component<Props, State> {
-    state: State = {
-        inputValue: ""
-    };
-    onValueChange = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ inputValue: event.target.value })
-    onSubmit = (event : React.FormEvent) => {
-        event.preventDefault()
-        this.props.sendMessage({
-            id: `${Math.random() * 1000}-${Math.random() * 1000}-${Math.random() * 1000}`,
-            text: this.state.inputValue,
-            timestamp: new Date(),
-            username: 'someguy'
-        })
-        this.setState({ inputValue: "" })
-    }
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.onSubmit}>
-                    <input onChange={this.onValueChange} value={this.state.inputValue} type="text" />
-                    <button >Submit</button>
-                </form>
-                <button onClick={this.props.wsConnect}>Connect</button>
-                <button onClick={this.props.wsDisconnect}>Disconnect</button>
-            </div>
-        );
-    }
+type Props = {
+    onSubmit: (value: string) => any
 }
 
-export default connect(null, mapDispatchToProps)(TextInput)
+export default (props: Props) => {
+    const [text, setText] = useState('')
+
+    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setText(event.currentTarget.value);
+
+    const onSubmit = (event: React.FormEvent) => {
+        event.preventDefault()
+        console.log(props.onSubmit(text))
+        setText('')
+    }
+
+    return (
+        <div>
+            <form onSubmit={onSubmit}>
+                <input onChange={onInputChange} value={text} type="text" />
+                <button >Submit</button>
+            </form>
+        </div>
+    );
+}
