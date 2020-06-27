@@ -1,7 +1,7 @@
-import { MessageList } from "../models"
+import { MessageList, ChatAction, GenericAction } from "../models"
 import { combineReducers } from "redux"
 import { UPDATE_MESSAGE_LIST, UPDATE_ONLINE_COUNT } from "../constants"
-import { ChatAction, GenericAction } from "../actions/chatActions"
+
 
 
 export type ChatState = {

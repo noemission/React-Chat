@@ -1,4 +1,4 @@
-import websocketMiddleware from './websocket'
+import websocketMiddleware from './websocketMiddleware'
 
 export default[
     websocketMiddleware

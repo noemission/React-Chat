@@ -2,8 +2,8 @@ import io from 'socket.io-client'
 import { Store, Action, Dispatch } from 'redux'
 import { wsConnected, wsDisconnected, wsReconnecting } from '../actions/websocketActions';
 import { WS_CONNECT, WS_DISCONNECT, SEND_MESSAGE } from '../constants';
-import { Message } from '../models';
-import { GenericAction, updateMessageList, updateOnlineCount } from '../actions/chatActions';
+import { Message, GenericAction } from '../models';
+import { updateMessageList, updateOnlineCount } from '../actions/chatActions';
 
 const socketMiddleware = () => {
     let socket: SocketIOClient.Socket = null;
@@ -32,7 +32,7 @@ const socketMiddleware = () => {
         store.dispatch(updateMessageList(message))
     };
 
-    const onOnlineCount = (store: Store) => (count: number)=> {
+    const onOnlineCount = (store: Store) => (count: number) => {
         console.log('received a message ', count);
         store.dispatch(updateOnlineCount(count))
     };

@@ -1,5 +1,6 @@
 import { WS_CONNECTED, WS_DISCONNECTED, WS_RECONNECTING } from "../constants"
-import { GenericAction } from "../actions/chatActions"
+import { GenericAction } from "../models"
+
 
 export type WSState = {
     readonly connected: boolean
