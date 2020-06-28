@@ -1,18 +1,28 @@
-.container{
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    // border: 2px solid;
-    margin: .5em 0;
+.container {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  // border: 2px solid;
+  margin: 0.5em 0;
 }
-.innerContainer{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 5px 1em;
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5px 1em;
 }
-.flexEndFix{
-    // css fix because justify-content: flex-end; and vertical scroll don't play well together
-    flex: 1 1 auto;
+.flexEndFix {
+  // css fix because justify-content: flex-end; and vertical scroll don't play well together
+  flex: 1 1 auto;
+}
+
+:global{
+    .message-enter {
+      opacity: 0;
+    }
+    .message-enter-active {
+      opacity: 1;
+      transition: opacity 500ms ease-in;
+    }
 }

@@ -4,6 +4,8 @@ import { ChatState } from "../../store/reducers/chatReducer";
 import Message from "../Message/Message";
 import { MessageList, RootState } from "../../store/models";
 import classNames from './messageList.scss'
+import { CSSTransition,    TransitionGroup } from "react-transition-group";
+
 
 type Props = {
     messages: MessageList
@@ -27,14 +29,23 @@ export default (props: Props) => {
             <div className={classNames.innerContainer}>
                 {/* fix because justify-content: flex-end; and vertical scroll don't play well together */}
                 <div className={classNames.flexEndFix}></div>
+                { /* @ts-ignore */}
+                <TransitionGroup>
 
-                {messages.map(message => <Message
-                    id={message.id}
-                    ownMessage={message.username === username}
-                    key={message.id}
-                    text={message.text}
-                    timestamp={message.timestamp}
-                    username={message.username} />)}
+                    {messages.map(message => 
+                    <CSSTransition
+                        key={message.id}
+                        timeout={500}
+                        classNames="message">
+                    <Message
+                        id={message.id}
+                        ownMessage={message.username === username}
+                        key={message.id}
+                        text={message.text}
+                        timestamp={message.timestamp}
+                        username={message.username} />
+                    </CSSTransition>)}
+                </TransitionGroup>
             </div>
         </div>
     );
