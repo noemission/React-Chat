@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import MessageList from "../../components/MessageList/MessageList";
 import TextInput from "../../components/TextInput/TextInput";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,7 +14,6 @@ export default () => {
         [dispatch]
     )
 
-    
     
     return <div className={classNames.container}>
         <MessageList messages={messageList} />

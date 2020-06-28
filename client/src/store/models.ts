@@ -19,7 +19,8 @@ export interface Message {
     id: string,
     text: string,
     username: string,
-    timestamp: Date
+    timestamp: Date,
+    read: boolean
 }
 export type MessageList = Message[]
 
