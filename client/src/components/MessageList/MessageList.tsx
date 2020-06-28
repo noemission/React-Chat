@@ -13,9 +13,12 @@ export default (props: Props) => {
     const { messages } = props;
     const refContainer = useRef(null);
 
-    useEffect(() => {
+    const scrollToBottom = () => {
         const bottom = (refContainer.current as HTMLElement).scrollHeight;
         (refContainer.current as HTMLElement).scrollTo(0, bottom)
+    }
+    useEffect(() => {
+        document.hasFocus() && scrollToBottom()
     }, [messages.length])
 
 
@@ -26,6 +29,7 @@ export default (props: Props) => {
                 <div className={classNames.flexEndFix}></div>
 
                 {messages.map(message => <Message
+                    id={message.id}
                     ownMessage={message.username === username}
                     key={message.id}
                     text={message.text}
