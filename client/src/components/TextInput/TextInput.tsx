@@ -13,18 +13,24 @@ export default (props: Props) => {
 
     const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setText(event.currentTarget.value);
 
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault()
+    const handleSubmit = () => {
         onSubmit(text)
         eraseValueAfterSubmit && setText('')
     }
 
+    const onEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            handleSubmit()
+        }
+    }
+
     return (
         <div className={`row ${classNames.container}`}>
-            <form onSubmit={handleSubmit} className={`row ${classNames.form}`}>
-                <textarea onChange={onInputChange} value={text} className={`col ${classNames.textInput}`}/>
-                <button >Submit</button>
-            </form>
+            <div className={`row`}>
+                <textarea onKeyDown={onEnterPress} onChange={onInputChange} value={text} className={`col ${classNames.textInput}`} />
+                <button onClick={handleSubmit}>Submit</button>
+            </div>
         </div>
     );
 }
