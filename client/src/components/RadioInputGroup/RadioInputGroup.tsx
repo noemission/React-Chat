@@ -1,28 +1,36 @@
 import React from "react";
+import string2bool from "../../services/string2bool";
+import generateID from "../../services/generateID";
 
 type Props = {
     options: {
-        value: string,
+        value: any,
         text: string
     }[],
-    checkedValue: string,
-    onSelect: (value: string) => any
+    checkedValue: any,
+    onSelect: (value: any) => any
 }
 
 export default (props: Props) => {
 
-    const {  checkedValue, onSelect, options } = props
+    const { checkedValue, onSelect, options } = props
 
-    const onRadioSelect = (ev: React.SyntheticEvent<HTMLInputElement>) => onSelect(ev.currentTarget.value)
+    const onRadioSelect = (ev: React.SyntheticEvent<HTMLInputElement>) => {
+        if (options.every(option => typeof option.value === 'boolean')) {
+            onSelect(string2bool(ev.currentTarget.value))
+        } else {
+            onSelect(ev.currentTarget.value)
+        }
+    }
 
-    return <form>
+    return <div>
         {options.map(({ value, text }) => {
-            const id = '' + Math.random();
+            const id = generateID();
             return <div key={value}>
-                <input type="radio" id={id}  value={value} checked={value === checkedValue} onChange={onRadioSelect} />
+                <input type="radio" id={id} value={value} checked={value === checkedValue} onChange={onRadioSelect} />
                 <label htmlFor={id}>{text}</label>
             </div>
 
         })}
-    </form>
+    </div>
 }

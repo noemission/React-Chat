@@ -10,6 +10,26 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.scss$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    'style-loader',
+                    // Translates CSS into CommonJS
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            // localIdentName: "[name]_[local]_[hash:base64]",
+                            sourceMap: true,
+                            // minimize: true
+                        }
+                    },
+                    // Compiles Sass to CSS
+                    'sass-loader',
+                ],
+            },
         ],
     },
     resolve: {

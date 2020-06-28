@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  border: 2px solid;
+  padding: 1em;
+}
+.link {
+  color: black;
+  margin-right: 1em;
+  text-decoration: none;
+  &:global(.selected) {
+    border-bottom: 1px solid;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

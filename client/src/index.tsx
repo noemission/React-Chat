@@ -5,9 +5,10 @@ import { Provider } from 'react-redux'
 import store from "./store/";
 
 import App from './main'
+import './styles/main.scss'
 
 
-const wrapper = document.getElementById("container");
+const wrapper = document.getElementById("app");
 wrapper ? ReactDOM.render(
     <Provider store={store}>
         <Router>

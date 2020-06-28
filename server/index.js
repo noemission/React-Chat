@@ -41,8 +41,13 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => broadCastNumberOfClients())
     socket.on('SEND_MESSAGE', (data) => {
-        console.log(data)
-        io.emit("UPDATE_MESSAGE_LIST", data)
+        const { username, text } = data
+        io.emit("UPDATE_MESSAGE_LIST", {
+            username,
+            text,
+            timestamp: new Date(),
+            id: Math.random()
+        })
 
     })
 });

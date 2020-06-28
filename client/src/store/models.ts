@@ -1,11 +1,13 @@
 import { ChatState } from "./reducers/chatReducer";
 import { WSState } from "./reducers/websocketReducer";
+import { SettingsState } from "./reducers/settingsReducer";
 
 export const Languages = <const>['English', 'Greek']
 export const Colors = <const>['light', 'dark']
 export interface UserSettings {
     username: string,
     avatar: string,
+    availableColors: typeof Colors;
     color: typeof Colors[number],
     hour12: boolean,
     sendWithCtrlEnter: boolean,
@@ -45,10 +47,15 @@ export type ColorChangeAction = {
     readonly type: string;
     readonly payload: typeof Colors[number];
 };
+export type SettingsChangeAction = {
+    readonly type: string;
+    readonly payload: SettingsState
+};
 
-export type ActionTypes = ChatAction | StringAction | BooleanAction | LanguageChangeAction | ColorChangeAction
+export type ActionTypes = ChatAction | StringAction | BooleanAction | LanguageChangeAction | ColorChangeAction | SettingsChangeAction
 
-export type StateObject = {
+export type RootState = {
     chat: ChatState,
-    websocket: WSState
+    websocket: WSState,
+    settings: SettingsState
 }

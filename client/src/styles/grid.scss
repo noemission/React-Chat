@@ -1,0 +1,52 @@
+@mixin create-mq($breakpoint) {
+    @if($breakpoint == 0) {
+      @content;
+    } @else {
+      @media screen and (min-width: $breakpoint *1px) {
+        @content;
+      }
+    }
+  }
+  
+  @mixin create-col-classes($modifier, $grid__cols, $breakpoint) {
+    @include create-mq($breakpoint) {
+      @for $i from 1 through $grid__cols {
+        .col#{$modifier}-#{$i} {
+          flex-basis: (100 / ($grid__cols / $i) ) * 1%;
+          
+          
+        }
+        .col#{$modifier}-offset-#{$i} {
+          margin-left: (100 / ($grid__cols / $i) ) * 1%;
+        }
+      }
+    }
+  }
+  $grid__cols: 12;
+  $map-grid-props: ('-sm': 0, '-md': 768, '-lg': 992);
+  
+  
+  $grid__bp-md: 768;
+  .container {
+    max-width: 992 * 1px;
+    margin: 0 auto;
+    
+    &--fluid {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  
+    @each $modifier , $breakpoint in $map-grid-props {
+      @include create-col-classes($modifier, $grid__cols, $breakpoint);
+    }
+    .col{
+        flex: 1;
+    }
+    
+  }
+  

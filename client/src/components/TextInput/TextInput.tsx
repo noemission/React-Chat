@@ -1,24 +1,28 @@
 import React, { useState } from "react";
+import classNames from './textInput.scss'
 
 type Props = {
     onSubmit: (value: string) => any
+    defaultValue?: string
+    eraseValueAfterSubmit?: boolean
 }
 
 export default (props: Props) => {
-    const [text, setText] = useState('')
+    const { onSubmit, defaultValue = "", eraseValueAfterSubmit = false } = props
+    const [text, setText] = useState(defaultValue)
 
-    const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => setText(event.currentTarget.value);
+    const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setText(event.currentTarget.value);
 
-    const onSubmit = (event: React.FormEvent) => {
+    const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
-        console.log(props.onSubmit(text))
-        setText('')
+        onSubmit(text)
+        eraseValueAfterSubmit && setText('')
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <input onChange={onInputChange} value={text} type="text" />
+        <div className={`row ${classNames.container}`}>
+            <form onSubmit={handleSubmit} className={`row ${classNames.form}`}>
+                <textarea onChange={onInputChange} value={text} className={`col ${classNames.textInput}`}/>
                 <button >Submit</button>
             </form>
         </div>

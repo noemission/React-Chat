@@ -1,0 +1,24 @@
+.messageContainer{
+    display: inline-block;
+    // background-color: #f1f0f0;
+    border: 1px solid;
+    padding: 1em;
+    border-bottom-right-radius: 1.3em;
+    border-top-right-radius: 1.3em;
+    border-top-left-radius: 1.3em;
+    border-bottom-left-radius: 1.3em;
+}
+.messageDetails{
+    margin-bottom: 0;
+    margin-left: 16px;
+    font-size: 15px;
+    
+}
+.ownMessage{
+    .messageDetails{
+        text-align: right;
+    }
+    .messageContainer{
+        float: right;
+    }
+}
