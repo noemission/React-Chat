@@ -1,4 +1,9 @@
 .container {
+  @media (orientation: landscape) {
+    & {
+      min-height: 55px;
+    }
+  }
   min-height: 90px;
 }
 .textInput{
