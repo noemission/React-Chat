@@ -21,7 +21,7 @@ export default () => {
                 Chat
                 {unread ? <sup>{unread}</sup> : null}
             </NavLink>
-            <NavLink className={classNames.link} activeClassName="selected" to="/about">Settings</NavLink>
+            <NavLink className={classNames.link} activeClassName="selected" to="/settings">Settings</NavLink>
         </div>
     </nav>
 }

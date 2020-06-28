@@ -24,7 +24,7 @@ export default connect()(function App({ dispatch }: { dispatch: Dispatch }) {
                 <Route exact path="/">
                     <Chat />
                 </Route>
-                <Route path="/about">
+                <Route path="/settings">
                     <Settings />
                 </Route>
                 <Route path="*">
