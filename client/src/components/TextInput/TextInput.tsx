@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classNames from './textInput.scss'
+import emojiReplacer from "../../services/emojiReplacer";
 
 type Props = {
     onSubmit: (value: string) => any
@@ -11,7 +12,7 @@ export default (props: Props) => {
     const { onSubmit, defaultValue = "", eraseValueAfterSubmit = false } = props
     const [text, setText] = useState(defaultValue)
 
-    const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setText(event.currentTarget.value);
+    const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setText(emojiReplacer(event.currentTarget.value));
 
     const handleSubmit = () => {
         onSubmit(text)
