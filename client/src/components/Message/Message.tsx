@@ -1,8 +1,10 @@
-import React, { useRef, useState, createRef, useEffect, useCallback } from "react";
+import React, { useRef, useState, createRef, useEffect, useCallback, Dispatch, SetStateAction } from "react";
 import formatTime from "../../services/formatTime";
 import classNames from "./message.scss";
 import { useDispatch } from "react-redux";
 import { setMessageRead } from "../../store/actions";
+import linkParser, { LinkMatch, linkRegex } from "../../services/linkParser";
+import MediaMessage from "../MediaMessage/MediaMessage";
 
 type Props = {
     text: string,
@@ -16,14 +18,16 @@ type Props = {
 
 export default (props: Props) => {
     const elemRef = useRef();
-    const observer = React.useRef(null);
+    const observer = useRef(null);
     const dispatch = useDispatch()
     const onMessageRead = useCallback(
         () => dispatch(setMessageRead(props.id)),
         [dispatch]
     )
+    const [links, setLinks]: [LinkMatch[], Dispatch<SetStateAction<LinkMatch[]>>] = useState([])
+    const { text } = props
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log('creating observer for', props.text)
         observer.current = new IntersectionObserver(
             entries => {
@@ -39,7 +43,7 @@ export default (props: Props) => {
         );
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (elemRef) {
             // Our ref has a value, pointing to an HTML element
             // The perfect time to observe it.
@@ -59,14 +63,44 @@ export default (props: Props) => {
     }, [elemRef]);
 
 
+    const parseLink = async (text: string) => setLinks(await linkParser(text))
+    useEffect(() => {
+        parseLink(props.text)
+    }, [props.text])
+
+    const substituteLinks = () => {
+        let newText = text.split(linkRegex)
+            .reduce((prev, current, i) => {
+                if (!i) {
+                    return [current];
+                }
+                const link = links.find(l => l.link === current)
+                if (link) {
+                    if (!link.isImage && !link.youtubeID)
+                        return prev.concat(<a key={i} target="_blank" href={link.link} >{link.link}</a>);
+                    else
+                        return prev;
+                }
+                return prev.concat(current)
+
+            }, [])
+        return <span>{newText}</span>
+    }
+
+    const linksWithMedia = links.filter(link => link.isImage || link.youtubeID);
+
     return <div ref={elemRef} className="row">
         <div className={`col-sm-6 ${props.ownMessage ? 'col-sm-offset-6 ' + classNames.ownMessage : ''}`}>
             <p className={classNames.messageDetails}>
-                <span>{props.username}, </span>
+                {!props.ownMessage && <span>{props.username}, </span>}
                 <span>{formatTime(props.timestamp)}</span>
             </p>
             <div className={classNames.messageContainer}>
-                <span> {props.text} </span>
+                <div className={linksWithMedia.length ? classNames.hasMedia : ''}>
+                    {substituteLinks()}
+                </div>
+                {linksWithMedia.map((link, i) => <MediaMessage key={link.link + i} link={link} />)}
+
             </div>
         </div>
     </div>
