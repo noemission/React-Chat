@@ -7,6 +7,12 @@ import { updateMessageList, updateOnlineCount } from '../actions/chatActions';
 import isUsernameTaken from '../../services/isUsernameTaken';
 import getRandomUsername from '../../services/randomUsername';
 import { setUserName } from '../actions/settingsActions';
+// @ts-ignore
+import notificationFile from '../../../assets/notification.mp3'
+import { getUsername } from '../selectors/username';
+
+
+
 
 const socketMiddleware = () => {
     let socket: SocketIOClient.Socket = null;
@@ -36,7 +42,13 @@ const socketMiddleware = () => {
 
     const onError = (store: Store) => (error: any) => console.log('websocket error', error);
 
-    const onUpdateMessageList = (store: Store) => (message: Message) => store.dispatch(updateMessageList(message))
+    const onUpdateMessageList = (store: Store) => (message: Message) => {
+        store.dispatch(updateMessageList(message))
+        if(message.username !== getUsername(store.getState())){
+            const notificationSound = new Audio(notificationFile);
+            notificationSound.play()
+        }
+    }
 
     const onOnlineCount = (store: Store) => (count: number) => store.dispatch(updateOnlineCount(count))
 
