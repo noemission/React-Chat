@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { connect, useSelector } from 'react-redux'
-import { ChatState } from "../../store/reducers/chatReducer";
+import { useSelector } from 'react-redux'
 import Message from "../Message/Message";
 import { MessageList, RootState } from "../../store/models";
 import classNames from './messageList.scss'
@@ -16,8 +15,9 @@ export default (props: Props) => {
     const refContainer = useRef(null);
 
     const scrollToBottom = () => {
+        console.log('need to scroll')
         const bottom = (refContainer.current as HTMLElement).scrollHeight;
-        (refContainer.current as HTMLElement).scrollTo(0, bottom)
+        (refContainer.current as HTMLElement).scrollTo(0, bottom + 100)
     }
     useEffect(() => {
         document.hasFocus() && scrollToBottom()
