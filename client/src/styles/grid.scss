@@ -40,7 +40,10 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-  
+    
+    &.no-wrap{
+      flex-wrap: nowrap;
+    }
     @each $modifier , $breakpoint in $map-grid-props {
       @include create-col-classes($modifier, $grid__cols, $breakpoint);
     }

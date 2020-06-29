@@ -1,6 +1,7 @@
 import React from "react";
 import string2bool from "../../services/string2bool";
 import generateID from "../../services/generateID";
+import styles from "./RadioInputGroup.scss";
 
 type Props = {
     options: {
@@ -8,12 +9,13 @@ type Props = {
         text: string
     }[],
     checkedValue: any,
+    label: string,
     onSelect: (value: any) => any
 }
 
 export default (props: Props) => {
 
-    const { checkedValue, onSelect, options } = props
+    const { checkedValue, onSelect, options, label } = props
 
     const onRadioSelect = (ev: React.SyntheticEvent<HTMLInputElement>) => {
         if (options.every(option => typeof option.value === 'boolean')) {
@@ -23,14 +25,18 @@ export default (props: Props) => {
         }
     }
 
-    return <div>
-        {options.map(({ value, text }) => {
-            const id = generateID();
-            return <div key={value}>
-                <input type="radio" id={id} value={value} checked={value === checkedValue} onChange={onRadioSelect} />
-                <label htmlFor={id}>{text}</label>
-            </div>
-
-        })}
+    return <div className={`row ${styles.container}`}>
+        <div className="col-sm-12">
+            <p>{label}</p>
+        </div>
+        <div className="row">
+            {options.map(({ value, text }) => {
+                const id = generateID();
+                return <div key={value} className={styles.option}>
+                    <input type="radio" id={id} value={value} checked={value === checkedValue} onChange={onRadioSelect} />
+                    <label htmlFor={id}>{text}</label>
+                </div>
+            })}
+        </div>
     </div>
 }

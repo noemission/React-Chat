@@ -5,7 +5,7 @@ import { Dispatch } from "redux";
 import { wsConnect } from "./store/actions/websocketActions";
 import Navbar from "./components/Navbar/Navbar";
 import Chat from "./pages/Chat/Chat";
-import Settings from "./pages/Settings";
+import Settings from "./pages/Settings/Settings";
 import NotFound from "./pages/NotFound";
 import { watchLocalStorage } from "./store/actions";
 

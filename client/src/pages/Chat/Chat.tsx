@@ -4,7 +4,7 @@ import TextInput from "../../components/TextInput/TextInput";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/models";
 import { sendMessage } from "../../store/actions";
-import classNames from "./chat.scss";
+import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";
 
 export default () => {
     const dispatch = useDispatch()
@@ -14,9 +14,9 @@ export default () => {
         [dispatch]
     )
 
-    
-    return <div className={classNames.container}>
+
+    return <FullPageWrapper>
         <MessageList messages={messageList} />
         <TextInput onSubmit={onNewText} eraseValueAfterSubmit={true} />
-    </div>
+    </FullPageWrapper>
 }

@@ -3,12 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/models";
 import { setUserName } from "../../store/actions/settingsActions";
 import isUsernameTaken from "../../services/isUsernameTaken";
+import styles from "./UsernameSelector.scss";
 
-type Props = {
-
-}
-
-export default (props: Props) => {
+export default () => {
     const dispatch = useDispatch()
 
     const username = useSelector((state: RootState) => state.settings.username)
@@ -45,12 +42,13 @@ export default (props: Props) => {
     }, [username]);
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input onChange={onInputChange} value={text} type="text" />
-                <button >Submit</button>
-                {showWarning && <span>Sorry this username is already taken</span>}
-            </form>
-        </div>
+        <form className={`row ${styles.container}`} onSubmit={handleSubmit}>
+            <label className={`col-sm-12 ${styles.label}`} htmlFor="">User name</label>
+            <div className="row no-wrap">
+                <input className="col-sm-12 col-md-6" onChange={onInputChange} value={text} type="text" />
+                <button>OK</button>
+            </div>
+            {showWarning && <span>Sorry this username is already taken</span>}
+        </form>
     );
 }

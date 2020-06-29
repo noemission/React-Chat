@@ -1,0 +1,8 @@
+.container {
+  padding: 1em 0;
+}
+.option {
+  &:first-of-type {
+    margin-right: 1em;
+  }
+}

@@ -1,10 +1,12 @@
 import React, { useState, useCallback } from "react";
-import RadioInputGroup from "../components/RadioInputGroup/RadioInputGroup";
+import RadioInputGroup from "../../components/RadioInputGroup/RadioInputGroup";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, Colors, Languages } from "../store/models";
-import { setColor, setHour12, setSendWithCtrlEnter, setSelectedLanguage, setUserName } from "../store/actions/settingsActions";
-import DropDown from "../components/DropDown/DropDown";
-import UsernameSelector from "../components/UsernameSelector/UsernameSelector";
+import { RootState, Colors, Languages } from "../../store/models";
+import { setColor, setHour12, setSendWithCtrlEnter, setSelectedLanguage, setUserName } from "../../store/actions/settingsActions";
+import DropDown from "../../components/DropDown/DropDown";
+import UsernameSelector from "../../components/UsernameSelector/UsernameSelector";
+import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";
+import styles from "./Settings.scss";
 
 export default () => {
 
@@ -50,15 +52,18 @@ export default () => {
         [dispatch]
     )
 
-   
-    return <div>
-        Settings page
 
-        <UsernameSelector/>
-        <RadioInputGroup options={availableColors} onSelect={onColorSelect} checkedValue={selectedColor} />
-        <RadioInputGroup options={availableClockDisplays} onSelect={onClockDisplaySelect} checkedValue={selectedClockDisplay} />
-        <RadioInputGroup options={availableSendWithCtrlEnter} onSelect={onSendWithCtrlEnterSelect} checkedValue={selectedSendWithCtrlEnter} />
+    return <FullPageWrapper>
+        <div className={styles.container}>
+            <div className="row">
+                <UsernameSelector />
+            </div>
+            <RadioInputGroup label="Interface Color" options={availableColors} onSelect={onColorSelect} checkedValue={selectedColor} />
+            <RadioInputGroup label="Clock Display" options={availableClockDisplays} onSelect={onClockDisplaySelect} checkedValue={selectedClockDisplay} />
+            <RadioInputGroup label="Send Messages on CTRL+ENTER" options={availableSendWithCtrlEnter} onSelect={onSendWithCtrlEnterSelect} checkedValue={selectedSendWithCtrlEnter} />
 
-        <DropDown options={availableLanguages} selectedValue={selectedLanguage} label="kati" onSelect={onLanguageSelect} />
-    </div>
+            <DropDown options={availableLanguages} selectedValue={selectedLanguage} label="Language" onSelect={onLanguageSelect} />
+        </div>
+        <button className={styles.button}>Reset default</button>
+    </FullPageWrapper>
 }

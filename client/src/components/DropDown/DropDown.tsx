@@ -1,5 +1,6 @@
 import React from "react";
 import generateID from "../../services/generateID";
+import styles from './DropDown.scss'
 
 type Props = {
     options: {
@@ -19,9 +20,9 @@ export default (props: Props) => {
 
 
     const id = generateID();
-    return <div>
-        <label htmlFor={id}> {label} </label>
-        <select id={id} onChange={handleSelect} value={selectedValue}>
+    return <div className={`row ${styles.container}`}>
+        <label className={`col-sm-12 ${styles.label}`} htmlFor={id}> {label} </label>
+        <select className="col-sm-3" id={id} onChange={handleSelect} value={selectedValue}>
             {options.map(({ value, text }) => {
                 return <option key={value} value={value}>{text}</option>
             })}
