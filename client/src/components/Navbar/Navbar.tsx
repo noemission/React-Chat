@@ -18,23 +18,23 @@ export default () => {
     }, [unreadMessages]);
     useEffect(() => {
         console.log('new interval started')
-        
+
         // notificationSound.play();
 
         let turn = 0
         const changeTitle = setInterval(() => {
-            if(unread === 0) {
+            if (unread === 0) {
                 document.title !== defaultTitle && (document.title = defaultTitle)
                 return;
             }
-            if(turn === 0){
+            if (turn === 0) {
                 document.title = `You have ${unread} unread message`
                 turn = 1
-            }else{
+            } else {
                 document.title = defaultTitle
                 turn = 0;
             }
-        },1000)
+        }, 1000)
         return () => {
             console.log('removing one interval')
             clearInterval(changeTitle);
@@ -45,7 +45,7 @@ export default () => {
         <div className={classNames.container}>
             <NavLink className={classNames.link} activeClassName="selected" exact to="/">
                 Chat
-                {unread ? <sup>{unread}</sup> : null}
+                {unread ? <span className={classNames.unreadCount}>{unread}</span> : null}
             </NavLink>
             <NavLink className={classNames.link} activeClassName="selected" to="/settings">Settings</NavLink>
         </div>
