@@ -4,6 +4,7 @@ import classNames from './navbar.scss'
 import { useSelector } from 'react-redux'
 import { getUnreadMessages } from '../../store/selectors/unreadMessages'
 import Text from '../Text/Text'
+import translate from '../../services/translate'
 
 const defaultTitle = document.title;
 
@@ -25,7 +26,7 @@ export default () => {
                 return;
             }
             if (turn === 0) {
-                document.title = `You have ${unread} unread message`
+                document.title = `(${unread}) ${translate('You have unread messages')}`
                 turn = 1
             } else {
                 document.title = defaultTitle
