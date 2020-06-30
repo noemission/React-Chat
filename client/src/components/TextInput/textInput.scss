@@ -21,9 +21,7 @@
   
   &:focus{
     outline: none;
-    // box-shadow: 0 0 4px black;
     @include with-theme('box-shadow', 'message-input-box-shadow');
-    
     margin: 4px;
   }
 }

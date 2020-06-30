@@ -8,6 +8,7 @@ import UsernameSelector from "../../components/UsernameSelector/UsernameSelector
 import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";
 import styles from "./Settings.scss";
 import Button from "../../components/Button/Button";
+import Text from "../../components/Text/Text";
 
 export default () => {
 
@@ -65,7 +66,9 @@ export default () => {
 
             <DropDown options={availableLanguages} selectedValue={selectedLanguage} label="Language" onSelect={onLanguageSelect} />
         </div>
-        <Button className={styles.button} onClick={() => { }}>Reset default</Button>
+        <Button className={styles.button} onClick={() => { }}>
+            <Text>Reset to defaults</Text>
+        </Button>
         
     </FullPageWrapper>
 }

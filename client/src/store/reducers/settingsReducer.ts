@@ -10,8 +10,8 @@ const defaultState: SettingsState = {
     color: 'light',
     hour12: true,
     sendWithCtrlEnter: false,
-    languages: ["English", "Greek"],
-    selectedLanguage: "English",
+    languages: ["english", "greek"],
+    selectedLanguage: "english",
 }
 
 const initialState: SettingsState = (() => {

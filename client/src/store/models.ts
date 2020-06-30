@@ -2,7 +2,7 @@ import { ChatState } from "./reducers/chatReducer";
 import { WSState } from "./reducers/websocketReducer";
 import { SettingsState } from "./reducers/settingsReducer";
 
-export const Languages = <const>['English', 'Greek']
+export const Languages = <const>['english', 'greek']
 export const Colors = <const>['light', 'dark']
 export interface UserSettings {
     username: string,

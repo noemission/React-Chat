@@ -5,6 +5,7 @@ import { setUserName } from "../../store/actions/settingsActions";
 import isUsernameTaken from "../../services/isUsernameTaken";
 import styles from "./UsernameSelector.scss";
 import Button from "../Button/Button";
+import Text from "../Text/Text";
 
 export default () => {
     const dispatch = useDispatch()
@@ -44,12 +45,17 @@ export default () => {
 
     return (
         <form className={`row ${styles.container}`} onSubmit={handleSubmit}>
-            <label className={`col-sm-12 ${styles.label}`} htmlFor="">User name</label>
+            <label className={`col-sm-12 ${styles.label}`} htmlFor="">
+                <Text>username</Text>
+            </label>
             <div className="row no-wrap">
                 <input className="col-sm-12 col-md-6" onChange={onInputChange} value={text} type="text" />
                 <Button onClick={handleSubmit}>OK</Button>
             </div>
-            {showWarning && <span>Sorry this username is already taken</span>}
+            {
+                showWarning &&
+                <span><Text>Sorry this username is already taken</Text></span>
+            }
         </form>
     );
 }

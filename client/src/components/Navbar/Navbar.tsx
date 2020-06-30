@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import classNames from './navbar.scss'
 import { useSelector } from 'react-redux'
 import { getUnreadMessages } from '../../store/selectors/unreadMessages'
+import Text from '../Text/Text'
 
 const defaultTitle = document.title;
 
@@ -17,10 +18,6 @@ export default () => {
         return () => clearTimeout(timer);
     }, [unreadMessages]);
     useEffect(() => {
-        console.log('new interval started')
-
-        // notificationSound.play();
-
         let turn = 0
         const changeTitle = setInterval(() => {
             if (unread === 0) {
@@ -36,7 +33,6 @@ export default () => {
             }
         }, 1000)
         return () => {
-            console.log('removing one interval')
             clearInterval(changeTitle);
         }
     }, [unread]);
@@ -44,10 +40,12 @@ export default () => {
     return <nav className="row">
         <div className={classNames.container}>
             <NavLink className={classNames.link} activeClassName="selected" exact to="/">
-                Chat
+                <Text>Chat</Text>
                 {unread ? <span className={classNames.unreadCount}>{unread}</span> : null}
             </NavLink>
-            <NavLink className={classNames.link} activeClassName="selected" to="/settings">Settings</NavLink>
+            <NavLink className={classNames.link} activeClassName="selected" to="/settings">
+                <Text>Settings</Text>
+            </NavLink>
         </div>
     </nav>
 }
