@@ -7,6 +7,7 @@ import DropDown from "../../components/DropDown/DropDown";
 import UsernameSelector from "../../components/UsernameSelector/UsernameSelector";
 import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";
 import styles from "./Settings.scss";
+import Button from "../../components/Button/Button";
 
 export default () => {
 
@@ -64,6 +65,7 @@ export default () => {
 
             <DropDown options={availableLanguages} selectedValue={selectedLanguage} label="Language" onSelect={onLanguageSelect} />
         </div>
-        <button className={styles.button}>Reset default</button>
+        <Button style={ { minHeight: '4em' } } onClick={() => { }}>Reset default</Button>
+        
     </FullPageWrapper>
 }

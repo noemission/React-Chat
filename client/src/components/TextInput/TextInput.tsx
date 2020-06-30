@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import classNames from './textInput.scss'
 import emojiReplacer from "../../services/emojiReplacer";
+import Button from "../Button/Button";
 
 type Props = {
     onSubmit: (value: string) => any
     defaultValue?: string
-    eraseValueAfterSubmit?: boolean
+    eraseValueAfterSubmit?: boolean,
+    sendMessageOnCtrlEnter: boolean
 }
 
 export default (props: Props) => {
-    const { onSubmit, defaultValue = "", eraseValueAfterSubmit = false } = props
+    const { onSubmit, defaultValue = "", eraseValueAfterSubmit = false, sendMessageOnCtrlEnter } = props
     const [text, setText] = useState(defaultValue)
 
     const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setText(emojiReplacer(event.currentTarget.value));
 
     const handleSubmit = () => {
+        if(!text) return;
         onSubmit(text)
         eraseValueAfterSubmit && setText('')
     }
 
-    const onEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.keyCode == 13 && e.shiftKey == false) {
+    const onCtrlEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (sendMessageOnCtrlEnter && e.keyCode === 13 && e.ctrlKey) {
             e.preventDefault();
             handleSubmit()
         }
@@ -29,8 +32,10 @@ export default (props: Props) => {
     return (
         <div className={`row ${classNames.container}`}>
             <div className={`row`}>
-                <textarea onKeyDown={onEnterPress} onChange={onInputChange} value={text} className={`col ${classNames.textInput}`} />
-                <button onClick={handleSubmit}>Submit</button>
+                <textarea onKeyDown={onCtrlEnterPress} onChange={onInputChange} value={text} placeholder="Type a message..." className={`col ${classNames.textInput}`} />
+                <Button onClick={handleSubmit}>
+                    <i className="icon icon-paper-plane-empty">&#xf1d9;</i> 
+                </Button>                
             </div>
         </div>
     );

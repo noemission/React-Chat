@@ -1,12 +1,14 @@
 .messageContainer {
   display: inline-block;
-  // background-color: #f1f0f0;
+  @include with-theme('color', 'message-color');
+  @include with-theme('background', 'message-background');
   border: 1px solid;
   padding: 1em;
   border-bottom-right-radius: 1.3em;
   border-top-right-radius: 1.3em;
   border-top-left-radius: 1.3em;
   border-bottom-left-radius: 1.3em;
+  word-break: break-word;
 }
 .messageDetails {
   margin-bottom: 0;
