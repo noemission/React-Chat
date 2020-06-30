@@ -65,7 +65,7 @@ export default () => {
 
             <DropDown options={availableLanguages} selectedValue={selectedLanguage} label="Language" onSelect={onLanguageSelect} />
         </div>
-        <Button style={ { minHeight: '4em' } } onClick={() => { }}>Reset default</Button>
+        <Button className={styles.button} onClick={() => { }}>Reset default</Button>
         
     </FullPageWrapper>
 }
