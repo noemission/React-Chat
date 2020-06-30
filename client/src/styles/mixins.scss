@@ -1,0 +1,10 @@
+@import "./themes.scss";
+
+@mixin with-theme($key, $color) {
+  @each $theme_name, $theme_color in $themes {
+    :global(.theme-#{$theme_name}) &,
+    &:global(.theme-#{$theme_name}) {
+      #{$key}: map-get(map-get($themes, $theme_name), $color);
+    }
+  }
+}

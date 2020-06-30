@@ -9,6 +9,7 @@ import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";
 export default () => {
     const dispatch = useDispatch()
     const messageList = useSelector((state: RootState) => state.chat.messageList)
+    const sendWithCtrlEnter = useSelector((state: RootState) => state.settings.sendWithCtrlEnter)
     const onNewText = useCallback(
         (text: string) => dispatch(sendMessage(text)),
         [dispatch]
@@ -17,6 +18,6 @@ export default () => {
 
     return <FullPageWrapper>
         <MessageList messages={messageList} />
-        <TextInput onSubmit={onNewText} eraseValueAfterSubmit={true} />
+        <TextInput sendMessageOnCtrlEnter={sendWithCtrlEnter} onSubmit={onNewText} eraseValueAfterSubmit={true} />
     </FullPageWrapper>
 }

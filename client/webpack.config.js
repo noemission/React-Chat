@@ -11,7 +11,7 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.scss$/i,
+                test: /\.s?css$/i,
                 use: [
                     // Creates `style` nodes from JS strings
                     'style-loader',
@@ -26,8 +26,13 @@ module.exports = {
                             // minimize: true
                         }
                     },
-                    // Compiles Sass to CSS
                     'sass-loader',
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                          resources: path.resolve(__dirname,'src','styles','mixins.scss'),
+                        }
+                    }
                 ],
             },
             {
@@ -36,7 +41,19 @@ module.exports = {
                 options: {
                   name: '[path][name].[ext]'
                 }
-            }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      name: '[name].[ext]',
+                      
+                    }
+                  }
+                ]
+              }
         ],
     },
     resolve: {

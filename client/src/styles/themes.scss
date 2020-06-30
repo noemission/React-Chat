@@ -1,0 +1,25 @@
+$themes: (
+    light: (
+        color-background: #FAFAFA,
+        color-text: black,
+        font-weight: 400,
+        message-background: white,
+        message-color: black,
+        message-input-background: white,
+        message-input-color: black,
+        message-input-border-color: #9E9E9E,
+        message-input-box-shadow: 0 0 4px black
+    ),
+    dark: (
+        color-background: black,
+        color-text: white,
+        font-weight: 600,
+        message-background: white,
+        message-color: black,
+        message-input-background: black,
+        message-input-color: white,
+        message-input-border-color: floralwhite,
+        message-input-box-shadow: 0 0 4px 2px floralwhite
+
+    )
+);

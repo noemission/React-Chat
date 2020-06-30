@@ -1,5 +1,11 @@
-.page{
+.content{
     display: flex;
     flex-direction: column;
     height: 100vh;
+}
+.page{
+    @include with-theme('background', 'color-background');
+    @include with-theme('color', 'color-text');
+    @include with-theme('font-weight', 'font-weight');
+    
 }

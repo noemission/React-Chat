@@ -24,7 +24,7 @@ export default () => {
         let turn = 0
         const changeTitle = setInterval(() => {
             if(unread === 0) {
-                document.title = defaultTitle
+                document.title !== defaultTitle && (document.title = defaultTitle)
                 return;
             }
             if(turn === 0){

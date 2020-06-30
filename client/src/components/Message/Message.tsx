@@ -1,10 +1,11 @@
 import React, { useRef, useState, createRef, useEffect, useCallback, Dispatch, SetStateAction } from "react";
 import formatTime from "../../services/formatTime";
 import classNames from "./message.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMessageRead } from "../../store/actions";
 import linkParser, { LinkMatch, linkRegex } from "../../services/linkParser";
 import MediaMessage from "../MediaMessage/MediaMessage";
+import { RootState } from "../../store/models";
 
 type Props = {
     text: string,
@@ -20,15 +21,16 @@ export default (props: Props) => {
     const elemRef = useRef();
     const observer = useRef(null);
     const dispatch = useDispatch()
+    
     const onMessageRead = useCallback(
         () => dispatch(setMessageRead(props.id)),
         [dispatch]
     )
     const [links, setLinks]: [LinkMatch[], Dispatch<SetStateAction<LinkMatch[]>>] = useState([])
     const { text } = props
+    const hour12 = useSelector((state : RootState) => state.settings.hour12)
 
     useEffect(() => {
-        console.log('creating observer for', props.text)
         observer.current = new IntersectionObserver(
             entries => {
                 if (entries[0].isIntersecting) {
@@ -39,7 +41,6 @@ export default (props: Props) => {
             {
                 threshold: 0.5
             }
-
         );
     }, []);
 
@@ -93,7 +94,7 @@ export default (props: Props) => {
         <div className={`col-sm-6 ${props.ownMessage ? 'col-sm-offset-6 ' + classNames.ownMessage : ''}`}>
             <p className={classNames.messageDetails}>
                 {!props.ownMessage && <span>{props.username}, </span>}
-                <span>{formatTime(props.timestamp)}</span>
+                <span>{formatTime(props.timestamp, hour12)}</span>
             </p>
             <div className={classNames.messageContainer}>
                 <div className={linksWithMedia.length ? classNames.hasMedia : ''}>

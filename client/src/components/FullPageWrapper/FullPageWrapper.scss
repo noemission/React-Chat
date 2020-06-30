@@ -1,7 +1,8 @@
-.container{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    justify-content: space-between;
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: visible;
+  justify-content: space-between;
 }

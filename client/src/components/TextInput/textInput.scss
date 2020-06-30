@@ -12,5 +12,18 @@
   min-height: 90px;
 }
 .textInput{
-    font-size: 20px;
+  @include with-theme('color', 'message-input-color');
+  @include with-theme('background', 'message-input-background');
+  @include with-theme('border-color', 'message-input-border-color');
+  border: 1px solid;
+  font-size: 20px;
+  transition: margin .3s;
+  
+  &:focus{
+    outline: none;
+    // box-shadow: 0 0 4px black;
+    @include with-theme('box-shadow', 'message-input-box-shadow');
+    
+    margin: 4px;
+  }
 }
