@@ -9,6 +9,7 @@ import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";
 import styles from "./Settings.scss";
 import Button from "../../components/Button/Button";
 import Text from "../../components/Text/Text";
+import { resetToDefaults } from "../../store/actions";
 
 export default () => {
 
@@ -54,6 +55,11 @@ export default () => {
         [dispatch]
     )
 
+    const onResetToDefaultsClick = useCallback(
+        () => dispatch(resetToDefaults()),
+        [dispatch]
+    )
+
 
     return <FullPageWrapper>
         <div className={styles.container}>
@@ -66,7 +72,7 @@ export default () => {
 
             <DropDown options={availableLanguages} selectedValue={selectedLanguage} label="Language" onSelect={onLanguageSelect} />
         </div>
-        <Button className={styles.button} onClick={() => { }}>
+        <Button className={styles.button} onClick={onResetToDefaultsClick}>
             <Text>Reset to defaults</Text>
         </Button>
         
