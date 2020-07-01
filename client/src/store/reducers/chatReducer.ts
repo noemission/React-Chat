@@ -8,23 +8,8 @@ export type ChatState = {
     readonly messageList: MessageList
     readonly onlineCount: number
 }
-const initialState: ChatState = {
-    messageList: [
-        {
-            id: '262.85102975915197-955.9462143829574-792.5841198671267',
-            text: `Lorem Ipsum is simply dummy text of the `,
-            timestamp: new Date('2020-06-28T11:59:13.346Z'),
-            username: 'someguy',
-            read: false
-        },
-        {
-            id: '262.85102975915197-955.9462143829574-792.5841198671268',
-            text: `It is a long established fact that a reader will be distracted by the readable content`,
-            timestamp: new Date('2020-06-28T11:59:15.346Z'),
-            username: 'someguy',
-            read: false
-        }
-    ],
+export const initialState: ChatState = {
+    messageList: [],
     onlineCount: 0
 }
 

@@ -52,7 +52,6 @@ export default (
     text: keyof typeof englishTranslations | keyof typeof greekTranslations,
     language: typeof Languages[number] = store.getState().settings.selectedLanguage
 ) => {
-    console.log('translating', text)
     if (translations[language].hasOwnProperty(text)) {
         return translations[language][text];
     } else {

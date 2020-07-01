@@ -48,7 +48,6 @@ export default (props: Props) => {
         if (elemRef) {
             // Our ref has a value, pointing to an HTML element
             // The perfect time to observe it.
-            console.log('we have ref to obseve', props.text)
             // @ts-ignore
             observer.current.observe(elemRef.current)
         }

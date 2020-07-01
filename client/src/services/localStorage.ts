@@ -6,7 +6,6 @@ const STORAGE_KEY = "Settings"
 type OnChangeCallBack = (settings: SettingsState) => any
 export default {
     onChange: (cb: OnChangeCallBack): () => void => {
-        console.log('watching for localstorag changes')
         const func = (e: StorageEvent) => {
             if (e.key === STORAGE_KEY) return cb(JSON.parse(e.newValue))
         }
@@ -19,7 +18,6 @@ export default {
     getSettings: (): SettingsState | null => {
         let data = localStorage.getItem(STORAGE_KEY)
         try {
-            console.log(data)
             return JSON.parse(data)
         } catch (error) {
             return null;

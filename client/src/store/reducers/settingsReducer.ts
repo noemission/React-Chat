@@ -3,7 +3,7 @@ import { SET_USERNAME, SET_COLOR, SET_HOUR12, SET_SEND_WITH_CTRL_ENTER, SET_SELE
 import localStorage from "../../services/localStorage";
 
 export interface SettingsState extends UserSettings { }
-const defaultState: SettingsState = {
+export const defaultState: SettingsState = {
     username: "",
     avatar: '',
     availableColors: ["light", "dark"],
