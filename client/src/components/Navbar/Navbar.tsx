@@ -5,11 +5,13 @@ import { useSelector } from 'react-redux'
 import { getUnreadMessages } from '../../store/selectors/unreadMessages'
 import Text from '../Text/Text'
 import translate from '../../services/translate'
+import { RootState } from '../../store/models'
 
 const defaultTitle = document.title;
 
 export default () => {
     const unreadMessages = useSelector(getUnreadMessages);
+    const onlineCount = useSelector((state: RootState) => state.chat.onlineCount);
     const [unread, setUnread] = useState(0)
     useEffect(() => {
         // without a timeout here the unread counter will keep flashing on every message
@@ -47,6 +49,7 @@ export default () => {
             <NavLink className={classNames.link} activeClassName="selected" to="/settings">
                 <Text>Settings</Text>
             </NavLink>
+            <span className={classNames.onlineCount}><Text>Users</Text>: {onlineCount}</span>
         </div>
     </nav>
 }

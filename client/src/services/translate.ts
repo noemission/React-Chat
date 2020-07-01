@@ -20,7 +20,8 @@ const englishTranslations = {
     'Chat': 'Chat',
     'Settings': 'Settings',
     'Type a message': 'Type a message',
-    'You have unread messages': 'You have unread messages'
+    'You have unread messages': 'You have unread messages',
+    'Users': 'Users'
 }
 const greekTranslations = {
     'Interface Color': 'Χρώμα Διεπαφής',
@@ -41,7 +42,8 @@ const greekTranslations = {
     'Chat': 'Συνομιλία',
     'Settings': 'Ρυθμίσεις',
     'Type a message': 'Πληκτρολογήστε το μήνυμα σας',
-    'You have unread messages': 'Έχετε αδιάβαστα μυνήματα'
+    'You have unread messages': 'Έχετε αδιάβαστα μυνήματα',
+    'Users': 'Χρήστες'
 }
 const translations = {
     english: englishTranslations,
