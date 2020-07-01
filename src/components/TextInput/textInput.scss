@@ -15,6 +15,7 @@
   @include with-theme('color', 'message-input-color');
   @include with-theme('background', 'message-input-background');
   @include with-theme('border-color', 'message-input-border-color');
+  resize: none;
   border: 1px solid;
   font-size: 20px;
   transition: margin .3s;
