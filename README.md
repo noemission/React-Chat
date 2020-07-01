@@ -2,6 +2,8 @@
 
 A chat application created from scratch with typescript, react, redux and socketio.
 
+A live version of the project can be found at https://chat.friz.xyz/
+
 ### How does it work
 The app relies on a redux store for holding all the state. When a user first enters is assigned with a random username and connects to the websocket server. 
 
