@@ -1,11 +1,12 @@
 .content{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
+    overflow: hidden;
 }
 .page{
     @include with-theme('background', 'color-background');
     @include with-theme('color', 'color-text');
     @include with-theme('font-weight', 'font-weight');
-    
+    height: 100%;
 }

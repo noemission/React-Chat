@@ -1,8 +1,15 @@
-@import './icons.scss';
+@import "./icons.scss";
 :global {
-    @import './grid.scss';
+  @import "./grid.scss";
 }
-body{
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+:global {
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
 }
