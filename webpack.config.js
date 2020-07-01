@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 const path = require('path')
 
 module.exports = {
@@ -13,17 +14,13 @@ module.exports = {
             {
                 test: /\.s?css$/i,
                 use: [
-                    // Creates `style` nodes from JS strings
                     'style-loader',
-                    // Translates CSS into CommonJS
                     {
                         loader: "css-loader",
                         options: {
                             modules: true,
                             importLoaders: 1,
-                            // localIdentName: "[name]_[local]_[hash:base64]",
                             sourceMap: true,
-                            // minimize: true
                         }
                     },
                     'sass-loader',
@@ -63,9 +60,14 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
-        })
+        }),
+        new webpack.DefinePlugin({
+            'process.env.SERVER_URL': JSON.stringify("http://localhost:3000")
+          })
     ],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        port: 8001,
+        open: true
     }
 };

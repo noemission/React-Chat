@@ -12,11 +12,6 @@ try {
 }
 usernames = new Set(usernames);
 
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-});
-
 app.get('/available', (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
     const { username } = req.query
@@ -48,7 +43,6 @@ io.on('connection', (socket) => {
             timestamp: new Date(),
             id: Math.random()
         })
-
     })
 });
 

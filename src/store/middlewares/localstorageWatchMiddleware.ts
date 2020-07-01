@@ -1,5 +1,5 @@
 /* 
-    A store middleware that watches for changes in the localstorage
+    A store middleware that watches for changes in the local storage
     In case a change happened in another browser tab the settings will get updated in the current one
     That way we keep cross tab settings changes in sync.
 */

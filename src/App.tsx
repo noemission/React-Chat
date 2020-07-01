@@ -20,9 +20,10 @@ import { getTheme } from "./store/selectors/theme";
 export default connect()(function App({ dispatch }: { dispatch: Dispatch }) {
     const theme = useSelector(getTheme);
     useEffect(() => {
+        console.log('I run motherfucker')
         dispatch(wsConnect())
         dispatch(watchLocalStorage())
-    })
+    }, [])
     return (
         <div className={`container-fluid ${classNames.page} theme-${theme}`}>
             <div className={`container ${classNames.content}`}>
