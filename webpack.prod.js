@@ -21,9 +21,6 @@ module.exports = merge(common, {
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css',
-        }),
-        new webpack.DefinePlugin({
-            // 'process.env.SERVER_URL': JSON.stringify("")
         })
     ],
     module: {
