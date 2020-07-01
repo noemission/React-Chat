@@ -12,6 +12,8 @@ const defaultTitle = document.title;
 export default () => {
     const unreadMessages = useSelector(getUnreadMessages);
     const onlineCount = useSelector((state: RootState) => state.chat.onlineCount);
+    const isConnected = useSelector((state: RootState) => state.websocket.connected);
+    
     const [unread, setUnread] = useState(0)
     useEffect(() => {
         // without a timeout here the unread counter will keep flashing on every message
@@ -49,7 +51,8 @@ export default () => {
             <NavLink className={classNames.link} activeClassName="selected" to="/settings">
                 <Text>Settings</Text>
             </NavLink>
-            <span className={classNames.onlineCount}><Text>Users</Text>: {onlineCount}</span>
+            { isConnected && <span className={classNames.onlineCount}><Text>Users</Text>: {onlineCount}</span> }
+            { !isConnected && <span className={classNames.notConnected}><Text>Not connected</Text></span> }
         </div>
     </nav>
 }

@@ -27,7 +27,8 @@ const englishTranslations = {
     'Settings': 'Settings',
     'Type a message': 'Type a message',
     'You have unread messages': 'You have unread messages',
-    'Users': 'Users'
+    'Users': 'Users',
+    'Not connected': 'Not connected'
 }
 const greekTranslations = {
     'Interface Color': 'Χρώμα Διεπαφής',
@@ -49,7 +50,8 @@ const greekTranslations = {
     'Settings': 'Ρυθμίσεις',
     'Type a message': 'Πληκτρολογήστε το μήνυμα σας',
     'You have unread messages': 'Έχετε αδιάβαστα μυνήματα',
-    'Users': 'Χρήστες'
+    'Users': 'Χρήστες',
+    'Not connected': 'Χωρίς Σύνδεση'
 }
 const translations = {
     english: englishTranslations,

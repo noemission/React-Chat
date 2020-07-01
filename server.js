@@ -1,7 +1,9 @@
-var app = require('express')();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
-var fs = require('fs')
+const express = require('express')
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const fs = require('fs')
+const history = require('connect-history-api-fallback')
 
 let usernames;
 try {
@@ -24,14 +26,16 @@ app.get('/available', (req, res) => {
         res.json(false)
     }
 });
+app.use(history())
+app.use(express.static('build'))
+
 const broadCastNumberOfClients = () => {
     const numberOfClients = Object.keys(io.sockets.connected).length;
     io.emit("ONLINE_COUNT", numberOfClients)
-
 }
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('WS_SERVER :: a user connected');
     broadCastNumberOfClients();
 
     socket.on('disconnect', () => broadCastNumberOfClients())
@@ -46,6 +50,6 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(3000, () => {
-    console.log('listening on *:3000');
+http.listen(3001, () => { 
+    console.log('WS_SERVER :: started at http://localhost:3001');
 });

@@ -21,7 +21,11 @@
   position: absolute;
   color: red;
 }
-.onlineCount {
+.onlineCount,
+.notConnected {
   font-size: 13px;
   float: right;
+}
+.notConnected{
+  color: #FF5722;
 }
