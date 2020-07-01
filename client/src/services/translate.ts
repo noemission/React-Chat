@@ -1,3 +1,9 @@
+/* 
+    Utility function for translations
+    It will search a key on the known translations
+    returning the correct one based on the passed language.
+    It will return the query if no match found
+*/
 import { Languages } from "../store/models";
 import store from '../store'
 

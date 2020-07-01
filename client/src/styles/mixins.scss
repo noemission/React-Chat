@@ -1,5 +1,7 @@
+/* 
+  this mixin will create theme aware style rules
+*/
 @import "./themes.scss";
-
 @mixin with-theme($key, $color) {
   @each $theme_name, $theme_color in $themes {
     :global(.theme-#{$theme_name}) &,

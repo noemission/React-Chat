@@ -1,3 +1,7 @@
+/* 
+    A function that returns a pseudo random id in the format
+    "xxxx-xxxx-xxxx-xxxx-xxxx"
+*/
 export default () => {
     return Array(5)
         .fill(undefined)

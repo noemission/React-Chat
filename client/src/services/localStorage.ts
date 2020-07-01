@@ -1,3 +1,6 @@
+/* 
+    Utility function for safely accessing the localstorage
+*/
 import { SettingsState } from "../store/reducers/settingsReducer";
 
 const localStorage = window.localStorage;

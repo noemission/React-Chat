@@ -1,3 +1,7 @@
+/* 
+    A function that given a text it will replace all emoji signs :) :D ...
+    with the corresponding emoji icons
+*/
 const emojiMap = {
     ':)': '🙂',
     ':D': '😃',

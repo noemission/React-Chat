@@ -1,3 +1,7 @@
+/* 
+    A special component that handles the 
+    input of the user's username
+*/
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store/models";
@@ -35,8 +39,6 @@ export default () => {
                     setShowWarning(true);
                 }
             })
-
-
     }
 
     useEffect(() => {

@@ -1,3 +1,8 @@
+/* 
+    The starting point of the application
+    This component has to handle the routing,
+    initiate the websocket connection, and start the local storage observer
+*/
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
@@ -11,7 +16,6 @@ import { watchLocalStorage } from "./store/actions";
 
 import classNames from './styles/layout.scss'
 import { getTheme } from "./store/selectors/theme";
-
 
 export default connect()(function App({ dispatch }: { dispatch: Dispatch }) {
     const theme = useSelector(getTheme);
@@ -36,6 +40,5 @@ export default connect()(function App({ dispatch }: { dispatch: Dispatch }) {
                 </Switch>
             </div>
         </div>
-
     );
 })

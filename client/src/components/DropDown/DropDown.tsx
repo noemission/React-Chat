@@ -1,5 +1,10 @@
 import React from "react";
 import generateID from "../../services/generateID";
+/* 
+    A dropdown component that 
+    will create a select element with options
+    based on the passed props
+*/
 import styles from './DropDown.scss'
 import Text from "../Text/Text";
 import translate from "../../services/translate";
@@ -19,7 +24,6 @@ export default (props: Props) => {
     const { selectedValue, onSelect, options, label } = props
 
     const handleSelect = (ev: React.SyntheticEvent<HTMLSelectElement>) => onSelect(ev.currentTarget.value)
-
 
     const id = generateID();
     return <div className={`row ${styles.container}`}>

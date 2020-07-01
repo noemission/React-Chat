@@ -1,3 +1,7 @@
+/* 
+    The component that renders the list of
+    sent and received messages on the chat
+*/
 import React, { useEffect, useRef } from "react";
 import { useSelector } from 'react-redux'
 import Message from "../Message/Message";

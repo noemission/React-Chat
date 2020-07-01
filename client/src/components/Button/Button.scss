@@ -1,5 +1,4 @@
 .btn {
-
   @include with-theme('background-color', 'color-background');
   @include with-theme('color', 'color-text');
   @include with-theme('border-color', 'message-input-border-color');

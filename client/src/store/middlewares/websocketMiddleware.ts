@@ -1,3 +1,9 @@
+/* 
+    A store middleware that handles all the necessary operations
+    between the websocket server and the client app
+    Responsibilities of this middleware is opening the socket
+    watching for server messages and dispatching the appropriate actions in any case
+*/
 import io from 'socket.io-client'
 import { Store, Dispatch } from 'redux'
 import { wsConnected, wsDisconnected, wsReconnecting } from '../actions/websocketActions';
@@ -7,19 +13,14 @@ import { updateMessageList, updateOnlineCount } from '../actions/chatActions';
 import isUsernameTaken from '../../services/isUsernameTaken';
 import getRandomUsername from '../../services/randomUsername';
 import { setUserName } from '../actions/settingsActions';
-// @ts-ignore
 import notificationFile from '../../../assets/notification.mp3'
 import { getUsername } from '../selectors/username';
-
-
-
 
 const socketMiddleware = () => {
     let socket: SocketIOClient.Socket = null;
 
     const onConnect = (store: Store) => async () => {
         store.dispatch(wsConnected())
-
         // The first time someone joins the chat will not have a username
         // Since the app relies on a valid and unique username the following piece of code
         // assigns a random and unique username to the user
@@ -58,7 +59,6 @@ const socketMiddleware = () => {
                 if (socket !== null) {
                     socket.close();
                 }
-
                 socket = io('http://localhost:3000')
 
                 socket.on('connect', onConnect(store))

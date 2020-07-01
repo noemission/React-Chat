@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import RadioInputGroup from "../../components/RadioInputGroup/RadioInputGroup";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, Colors, Languages } from "../../store/models";
-import { setColor, setHour12, setSendWithCtrlEnter, setSelectedLanguage, setUserName } from "../../store/actions/settingsActions";
+import { setColor, setHour12, setSendWithCtrlEnter, setSelectedLanguage } from "../../store/actions/settingsActions";
 import DropDown from "../../components/DropDown/DropDown";
 import UsernameSelector from "../../components/UsernameSelector/UsernameSelector";
 import FullPageWrapper from "../../components/FullPageWrapper/FullPageWrapper";

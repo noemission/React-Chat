@@ -7,7 +7,6 @@ describe('Button renders its children', () => {
     it('Renders children that are simple text', () => {
         const btn = shallow(<Button onClick={onClick}>Hello</Button>);
         expect(btn.text()).toEqual('Hello')
-
     })
     it('Renders children that are elements', () => {
         const btn = shallow(<Button onClick={onClick}><span>Hello</span></Button>);

@@ -1,3 +1,8 @@
+/* 
+    A utility function that matches all the
+    urls in a string.
+    Special occasions are links that point to a youtube video or an image
+*/
 export const linkRegex = /(https?:\/\/\S*)/g
 const parseYoutubeLink = (text: string) => {
     const url = new URL(text);
@@ -28,7 +33,6 @@ export type LinkMatch = {
 export default async (text: string) => {
     let matches: LinkMatch[] = [];
     text.replace(linkRegex, (_, match, index) => {
-        console.log('matches are', match, index)
         matches.push({
             link: match,
             from: index,
@@ -43,7 +47,6 @@ export default async (text: string) => {
             isImage = await isImageLink(match.link)
         }
 
-        console.log('youtube id', youtubeID, 'isimage', isImage)
         return {
             ...match,
             youtubeID,
