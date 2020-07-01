@@ -59,7 +59,7 @@ const socketMiddleware = () => {
                 if (socket !== null) {
                     socket.close();
                 }
-                socket = io('http://localhost:3000')
+                socket = io(process.env.SERVER_URL)
 
                 socket.on('connect', onConnect(store))
                 socket.on('disconnect', onDisconnect(store))
