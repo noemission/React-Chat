@@ -7,3 +7,15 @@
 .label {
   margin-bottom: 1em;
 }
+
+:global{
+  // mozilla fix here because select element on dark mode is really messy
+  @-moz-document url-prefix() {
+    select {
+      -moz-appearance: none;
+      border-color: rgb(169, 169, 169);
+      border: 1px solid;
+      border-radius: 6px;
+    }
+  }
+}
