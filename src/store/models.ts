@@ -20,7 +20,8 @@ export interface Message {
     text: string,
     username: string,
     timestamp: Date,
-    read: boolean
+    read: boolean,
+    ownMessage?: boolean
 }
 export type MessageList = Message[]
 

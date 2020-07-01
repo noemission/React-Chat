@@ -44,8 +44,12 @@ const socketMiddleware = () => {
     const onError = (store: Store) => (error: any) => console.log('websocket error', error);
 
     const onUpdateMessageList = (store: Store) => (message: Message) => {
-        store.dispatch(updateMessageList(message))
-        if(message.username !== getUsername(store.getState())){
+        const ownMessage = message.username === getUsername(store.getState())
+        store.dispatch(updateMessageList({
+            ...message,
+            ownMessage 
+        }))
+        if(!ownMessage){
             const notificationSound = new Audio(notificationFile);
             notificationSound.play()
         }

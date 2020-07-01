@@ -43,7 +43,7 @@ export default (props: Props) => {
                         classNames="message">
                     <Message
                         id={message.id}
-                        ownMessage={message.username === username}
+                        ownMessage={message.ownMessage}
                         key={message.id}
                         text={message.text}
                         timestamp={message.timestamp}
